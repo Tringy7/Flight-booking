@@ -1,16 +1,15 @@
 package com.flightbooking.flight_booking.Controller.auth;
 
 import com.flightbooking.flight_booking.annotation.ApiMessage;
-import com.flightbooking.flight_booking.domain.User;
-import com.flightbooking.flight_booking.dto.auth.LoginDTO;
-import com.flightbooking.flight_booking.dto.auth.LoginRes;
-import com.flightbooking.flight_booking.service.UserService;
+import com.flightbooking.flight_booking.dto.auth.LoginRequest;
+import com.flightbooking.flight_booking.dto.auth.LoginResponse;
+import com.flightbooking.flight_booking.dto.auth.RegisterRequest;
+import com.flightbooking.flight_booking.dto.auth.RegisterResponse;
 import com.flightbooking.flight_booking.service.auth.AuthService;
-import com.flightbooking.flight_booking.util.SecurityUtil;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseCookie;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -29,21 +28,22 @@ public class AuthController {
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final AuthService authService;
 
-//    @PostMapping("/register")
-//    @ApiMessage("Register successful")
-//    public ResponseEntity<?> register(@Valid @RequestBody LoginDTO loginDTO) {
-//
-//    }
+    @PostMapping("/register")
+    @ApiMessage("Register successful")
+    public ResponseEntity<?> register(@Valid @RequestBody RegisterRequest registerRequest) {
+        RegisterResponse registerResponse = this.authService.handleRegister(registerRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(registerResponse);
+    }
 
     @PostMapping("/login")
     @ApiMessage("Login successful")
-    public ResponseEntity<LoginRes> login(@Valid @RequestBody LoginDTO loginDTO) throws Exception{
+    public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest loginRequest) throws Exception{
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-                loginDTO.getEmail(), loginDTO.getPassword());
+                loginRequest.getEmail(), loginRequest.getPassword());
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        LoginRes loginRes = this.authService.handleAuthentication(authentication);
+        LoginResponse loginRes = this.authService.handleAuthentication(authentication);
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.SET_COOKIE, this.authService.getCookie(loginRes.getRefreshToken()).toString())

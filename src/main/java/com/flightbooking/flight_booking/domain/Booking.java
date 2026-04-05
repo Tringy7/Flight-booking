@@ -1,6 +1,6 @@
 package com.flightbooking.flight_booking.domain;
 
-import com.flightbooking.flight_booking.enums.status.BookingStatus;
+import com.flightbooking.flight_booking.enumerate.status.BookingStatus;
 import jakarta.persistence.*;
 import lombok.*;
 

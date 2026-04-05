@@ -1,6 +1,6 @@
 package com.flightbooking.flight_booking.domain;
 
-import com.flightbooking.flight_booking.enums.common.RoleName;
+import com.flightbooking.flight_booking.enumerate.common.RoleName;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

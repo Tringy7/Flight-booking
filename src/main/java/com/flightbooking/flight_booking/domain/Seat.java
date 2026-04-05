@@ -1,7 +1,7 @@
 package com.flightbooking.flight_booking.domain;
 
-import com.flightbooking.flight_booking.enums.common.SeatClass;
-import com.flightbooking.flight_booking.enums.status.SeatStatus;
+import com.flightbooking.flight_booking.enumerate.common.SeatClass;
+import com.flightbooking.flight_booking.enumerate.status.SeatStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

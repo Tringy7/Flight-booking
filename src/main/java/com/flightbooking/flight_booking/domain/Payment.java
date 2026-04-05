@@ -1,7 +1,7 @@
 package com.flightbooking.flight_booking.domain;
 
-import com.flightbooking.flight_booking.enums.common.PaymentMethod;
-import com.flightbooking.flight_booking.enums.status.PaymentStatus;
+import com.flightbooking.flight_booking.enumerate.common.PaymentMethod;
+import com.flightbooking.flight_booking.enumerate.status.PaymentStatus;
 import jakarta.persistence.*;
 import lombok.*;
 

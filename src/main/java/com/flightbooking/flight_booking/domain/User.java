@@ -3,11 +3,9 @@ package com.flightbooking.flight_booking.domain;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import java.lang.reflect.Type;
 import java.time.Instant;
 
 @Entity
@@ -16,6 +14,7 @@ import java.time.Instant;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +32,8 @@ public class User {
     private Instant dob;
     // CCCD
     private String idNumber;
+    @Column(length = 1000)
+    private String refreshToken;
     @Column(nullable = false, updatable = false)
     private Instant createdAt;
     private Instant updatedAt;

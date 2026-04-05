@@ -1,4 +1,4 @@
-package com.flightbooking.flight_booking.enums.status;
+package com.flightbooking.flight_booking.enumerate.status;
 
 public enum PaymentStatus {
     PENDING, SUCCESS, FAILED

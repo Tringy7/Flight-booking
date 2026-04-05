@@ -1,5 +1,6 @@
 package com.flightbooking.flight_booking.Controller.auth;
 
+import com.flightbooking.flight_booking.annotation.ApiMessage;
 import com.flightbooking.flight_booking.domain.User;
 import com.flightbooking.flight_booking.dto.auth.LoginDTO;
 import com.flightbooking.flight_booking.dto.auth.LoginRes;
@@ -17,16 +18,25 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/auth")
 public class AuthController {
 
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final AuthService authService;
 
+//    @PostMapping("/register")
+//    @ApiMessage("Register successful")
+//    public ResponseEntity<?> register(@Valid @RequestBody LoginDTO loginDTO) {
+//
+//    }
+
     @PostMapping("/login")
+    @ApiMessage("Login successful")
     public ResponseEntity<LoginRes> login(@Valid @RequestBody LoginDTO loginDTO) throws Exception{
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                 loginDTO.getEmail(), loginDTO.getPassword());

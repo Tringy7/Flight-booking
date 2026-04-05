@@ -1,5 +1,6 @@
 package com.flightbooking.flight_booking.dto.auth;
 
+import com.flightbooking.flight_booking.domain.User;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -14,4 +15,6 @@ public class LoginDTO {
 
     @NotBlank(message = "Password is required")
     private String password;
+
+    private User user;
 }

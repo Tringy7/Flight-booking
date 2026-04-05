@@ -8,9 +8,10 @@ import java.time.Instant;
 @Entity
 @Table(name = "passengers")
 @Getter @Setter
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class Passenger {
+public class Passenger extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

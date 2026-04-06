@@ -5,6 +5,7 @@ import com.flightbooking.flight_booking.domain.User;
 import com.flightbooking.flight_booking.dto.auth.LoginResponse;
 import com.flightbooking.flight_booking.dto.auth.RegisterRequest;
 import com.flightbooking.flight_booking.dto.auth.RegisterResponse;
+import com.flightbooking.flight_booking.enumerate.common.RoleName;
 import com.flightbooking.flight_booking.service.UserService;
 import com.flightbooking.flight_booking.util.SecurityUtil;
 import jakarta.persistence.EntityExistsException;
@@ -61,6 +62,7 @@ public class AuthService {
                 .fullName(registerRequest.getFirstName() + " " + registerRequest.getLastName())
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
                 .phone(registerRequest.getPhoneNumber())
+                .role(RoleName.ROLE_USER)
                 .build();
         user = this.userService.saveUser(user);
 

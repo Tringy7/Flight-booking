@@ -1,5 +1,6 @@
 package com.flightbooking.flight_booking.domain;
 
+import com.flightbooking.flight_booking.enumerate.common.RoleName;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -31,8 +32,6 @@ public class User extends BaseEntity{
     private String idNumber;
     @Column(length = 1000)
     private String refreshToken;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id")
-    private Role role;
+    @Enumerated(EnumType.STRING)
+    private RoleName role;
 }

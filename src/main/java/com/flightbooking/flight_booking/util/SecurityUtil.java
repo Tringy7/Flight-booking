@@ -50,7 +50,7 @@ public class SecurityUtil {
     }
 
     public String createToken(User user, Instant validity, Instant now){
-        String authoritie = user.getRole().getName().name();
+        String authoritie = user.getRole().name();
 
         // PAYLOAD
         JwtClaimsSet claims = JwtClaimsSet.builder()
